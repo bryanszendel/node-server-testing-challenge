@@ -12,4 +12,15 @@ router.get('/', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+  const {id} = req.params
+  Clients.remove(id)
+    .then(deleted => {
+      res.status(200).json(deleted)
+    })
+    .catch(err => {
+      res.status(500).json({message: 'Error removing the client.'})
+    })
+})
+
 module.exports = router;
